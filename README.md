@@ -29,30 +29,30 @@ Encodes the given table into a JSON formatted string.
 ### Example
 
 ```lua
-	local RoJSON = require(PATH_TO_MODULE)
+local RoJSON = require(PATH_TO_MODULE)
 
-	local example = {
-		{
-			string = "Hello world!",
-			number = 101,
-			nested_tbl = {
-				{ "Hello" },
-				{ "World" },
-			},
-			supported_types = {
-				vec2 = Vector2.new(26, 363),
-				vec3 = Vector3.new(0, 5, 0),
-				enum_item = Enum.Font.Arcade,
-				udim2 = UDim2.new(1, 500, 1, 500),
-				udim = UDim.new(101, 101),
-			},
+local example = {
+	{
+		string = "Hello world!",
+		number = 101,
+		nested_tbl = {
+			{ "Hello" },
+			{ "World" },
 		},
-	}
+		supported_types = {
+			vec2 = Vector2.new(26, 363),
+			vec3 = Vector3.new(0, 5, 0),
+			enum_item = Enum.Font.Arcade,
+			udim2 = UDim2.new(1, 500, 1, 500),
+			udim = UDim.new(101, 101),
+		},
+	},
+}
 
-	local json = RoJSON.Encode(example)
+local json = RoJSON.Encode(example)
 
-	print(json)
-	```
+print(json)
+```
 
 ## .Decode(`string`): `table`
 
@@ -61,29 +61,29 @@ Decodes the JSON string and reconverts it into a table.
 ### Example
 
 ```lua
-	local RoJSON = require(PATH_TO_MODULE)
+local RoJSON = require(PATH_TO_MODULE)
 
-	local example = {
-		{
-			string = "Hello world!",
-			number = 101,
-			nested_tbl = {
-				{ "Hello" },
-				{ "World" },
-			},
-			supported_types = {
-				vec2 = Vector2.new(26, 363),
-				vec3 = Vector3.new(0, 5, 0),
-				enum_item = Enum.Font.Arcade,
-				udim2 = UDim2.new(1, 500, 1, 500),
-				udim = UDim.new(101, 101),
-			},
+local example = {
+	{
+		string = "Hello world!",
+		number = 101,
+		nested_tbl = {
+			{ "Hello" },
+			{ "World" },
 		},
-	}
+		supported_types = {
+			vec2 = Vector2.new(26, 363),
+			vec3 = Vector3.new(0, 5, 0),
+			enum_item = Enum.Font.Arcade,
+			udim2 = UDim2.new(1, 500, 1, 500),
+			udim = UDim.new(101, 101),
+		},
+	},
+}
 
-	local json = RoJSON.Encode(example)
-	local decodedJson = RoJSON.Decode(json)
+local json = RoJSON.Encode(example)
+local decodedJson = RoJSON.Decode(json)
 
-	print(json)
-	print(decodedJson)
-	```
+print(json)
+print(decodedJson)
+```
