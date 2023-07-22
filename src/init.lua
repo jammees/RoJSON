@@ -1,4 +1,4 @@
--- A JSON parser, which supports the encoding and decoding of roblox types (e.g. Enum, Vector2, UDim2)
+-- A JSON parser, which supports the encoding and decoding of roRoJSON types (e.g. Enum, Vector2, UDim2)
 -- Does not account for mixed table types!
 -- Version: 0.1
 type DictionaryOrArray = { [string | number]: any }
@@ -25,13 +25,13 @@ local function IsDictionary<T>(tbl: { T })
 	return rawlen(tbl) == 0
 end
 
-local function EncodeValue(value: any, JaSON: Methods): string
+local function EncodeValue(value: any, RoJSON: Methods): string
 	if typeof(value) == "string" then
 		return `"{value}"`
 	end
 
 	if typeof(value) == "table" then
-		return JaSON.Encode(value)
+		return RoJSON.Encode(value)
 	end
 
 	if typeof(value) == "Vector2" then
@@ -115,7 +115,7 @@ local function DecodeValue(value: any)
 	return value
 end
 
-local JaSON = {}
+local RoJSON = {}
 
 --[=[
 	Encodes the given table into a JSON format including the
@@ -135,7 +135,7 @@ local JaSON = {}
 
 	**Example**:
 	```lua
-	local JaSON = require(PATH_TO_MODULE)
+	local RoJSON = require(PATH_TO_MODULE)
 
 	local example = {
 		{
@@ -155,14 +155,14 @@ local JaSON = {}
 		},
 	}
 
-	local json = JaSON.Encode(example)
+	local json = RoJSON.Encode(example)
 
 	print(json)
 	```
 ]=]
 ---@param tbl table
 ---@return string
-function JaSON.Encode(tbl: DictionaryOrArray): JSON
+function RoJSON.Encode(tbl: DictionaryOrArray): JSON
 	local isDictionary = IsDictionary(tbl)
 	local parsedData = ""
 
@@ -172,7 +172,7 @@ function JaSON.Encode(tbl: DictionaryOrArray): JSON
 		end
 
 		local idx = isDictionary and `"{tostring(index)}":` or ``
-		local val = EncodeValue(value, JaSON)
+		local val = EncodeValue(value, RoJSON)
 
 		parsedData ..= `{idx}{val}`
 	end
@@ -186,7 +186,7 @@ end
 
 	**Example**:
 	```lua
-	local JaSON = require(PATH_TO_MODULE)
+	local RoJSON = require(PATH_TO_MODULE)
 
 	local example = {
 		{
@@ -206,8 +206,8 @@ end
 		},
 	}
 
-	local json = JaSON.Encode(example)
-	local decodedJson = JaSON.Decode(json)
+	local json = RoJSON.Encode(example)
+	local decodedJson = RoJSON.Decode(json)
 
 	print(json)
 	print(decodedJson)
@@ -215,7 +215,7 @@ end
 ]=]
 ---@param jsonData string
 ---@return table
-function JaSON.Decode(jsonData: JSON): DictionaryOrArray
+function RoJSON.Decode(jsonData: JSON): DictionaryOrArray
 	local jsonTbl = {}
 
 	local function Parse<T, P>(tbl: { T }, parentTbl: { P })
@@ -235,6 +235,6 @@ function JaSON.Decode(jsonData: JSON): DictionaryOrArray
 	return jsonTbl
 end
 
-export type JaSON = Methods
+export type RoJSON = Methods
 
-return JaSON
+return RoJSON

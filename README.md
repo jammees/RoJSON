@@ -1,4 +1,4 @@
-# JaSON
+# RoJSON
  A simple JSON implementation that supports roblox types (e.g. Vector2)
 
 Version: 0.1
@@ -29,7 +29,7 @@ Encodes the given table into a JSON formatted string.
 ### Example
 
 ```lua
-	local JaSON = require(PATH_TO_MODULE)
+	local RoJSON = require(PATH_TO_MODULE)
 
 	local example = {
 		{
@@ -49,7 +49,7 @@ Encodes the given table into a JSON formatted string.
 		},
 	}
 
-	local json = JaSON.Encode(example)
+	local json = RoJSON.Encode(example)
 
 	print(json)
 	```
@@ -61,7 +61,7 @@ Decodes the JSON string and reconverts it into a table.
 ### Example
 
 ```lua
-	local JaSON = require(PATH_TO_MODULE)
+	local RoJSON = require(PATH_TO_MODULE)
 
 	local example = {
 		{
@@ -81,8 +81,8 @@ Decodes the JSON string and reconverts it into a table.
 		},
 	}
 
-	local json = JaSON.Encode(example)
-	local decodedJson = JaSON.Decode(json)
+	local json = RoJSON.Encode(example)
+	local decodedJson = RoJSON.Decode(json)
 
 	print(json)
 	print(decodedJson)
